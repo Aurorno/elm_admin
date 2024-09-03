@@ -10,6 +10,19 @@ public class Business {
     private Double starPrice;
     private Double deliveryPrice;
 
+    public Business() {
+    }
+
+    public Business(Integer businessId, String password, String businessName, String businessAddress, String businessExplain, Double starPrice, Double deliveryPrice) {
+        this.businessId = businessId;
+        this.password = password;
+        this.businessName = businessName;
+        this.businessAddress = businessAddress;
+        this.businessExplain = businessExplain;
+        this.starPrice = starPrice;
+        this.deliveryPrice = deliveryPrice;
+    }
+
     public Integer getBusinessId() {
         return businessId;
     }

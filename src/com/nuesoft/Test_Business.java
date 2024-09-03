@@ -34,12 +34,29 @@ public class Test_Business {
         int busId = businessDao.addBusiness(business);
         System.out.println(busId);*/
 
+        //测试修改商户密码
+        /*int result = businessDao.updatePassword(10001, "123456");
+        if(result>0){
+            System.out.println("密码修改成功！");
+        }else {
+            System.out.println("密码修改失败！");
+        }*/
+
+        //测试修改商户信息
+        /*Business business = new Business(10008, null, "猴子山下香锅", "西安市高新区万达广场5楼", "猴子山下香锅", 15.0, 0.00);
+        int result = businessDao.updateBusiness(business);
+        if (result > 0){
+            System.out.println("修改成功！");
+        }else {
+            System.out.println("修改失败！");
+        }*/
+
         //测试删除商户信息
-        int rows = businessDao.deleteBusiness(10008);
+        /*int rows = businessDao.deleteBusiness(10008);
         if (rows!=1){
             System.out.println("删除失败!");
         }else {
             System.out.println("删除成功!");
-        }
+        }*/
     }
 }

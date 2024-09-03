@@ -9,56 +9,25 @@ import java.util.List;
  */
 public interface BusinessDao {
 
-    /**
-     * 获取全部商户
-     * @param businessName
-     * @param businessAddress
-     * @return
-     */
-    public List<Business> listBusiness(String businessName,String businessAddress);
+    // 获取全部商户
+    List<Business> listBusiness(String businessName,String businessAddress);
 
-    /**
-     * 添加商户信息
-     * @param businessName
-     * @return
-     */
-    public int saveBusiness(String businessName);
+    //商户登录
+    Business login(Integer businessId,String password);
 
-    /**
-     * 根据id删除商户
-     * @param businessId
-     * @return
-     */
-    public int deleteBusiness(int businessId);
+    //根据id获取商户信息
+    Business getBusinessById(Integer businessId);
 
-    /**
-     * 商户登录
-     * @param businessId
-     * @param password
-     * @return
-     */
-    public Business login(Integer businessId,String password);
+    //添加商户
+    int addBusiness(Business business);
 
-    /**
-     * 根据id获取商户信息
-     * @param businessId
-     * @return
-     */
-    public Business getBusinessById(Integer businessId);
+    //修改密码
+    int updatePassword(int businessId, String password);
 
-    /**
-     * 修改商户
-     * @param business
-     * @return
-     */
-    public int addBusiness(Business business);
+    //修改商户信息
+    int updateBusiness(Business business);
 
-    /**
-     * 修改密码
-     * @param businessId
-     * @param password
-     * @return
-     */
-    public int updateBusinessByPassword(Integer businessId,String password);
+    //根据id删除商户
+    int deleteBusiness(int businessId);
 
 }

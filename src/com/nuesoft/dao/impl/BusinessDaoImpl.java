@@ -59,50 +59,6 @@ public class BusinessDaoImpl  implements BusinessDao{
         return list;
     }
 
-    /**
-     * 添加用户
-     * @param businessName
-     * @return
-     */
-    @Override
-    public int saveBusiness(String businessName) {
-        //1.获取连接
-        //2.准备SQL
-        //3.执行SQL
-        //4.处理结果
-        //5.释放资源
-        return 0;
-    }
-
-    @Override
-    public int deleteBusiness(int businessId) {
-        int result = 0;
-        String delFootSql = "delete from food where businessId = ?";
-        String delBusinessSql = "delete from business where businessId = ?";
-        try {
-            con = DBUtil.getConnection();
-            con.setAutoCommit(false); //开启一个事务
-            pst = con.prepareStatement(delFootSql);
-            pst.setInt(1, businessId);
-            pst.executeUpdate();
-            pst = con.prepareStatement(delBusinessSql);
-            pst.setInt(1, businessId);
-            result = pst.executeUpdate();
-            con.commit();
-        } catch (SQLException e) {
-            result = 0;
-            try {
-                con.rollback();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-            e.printStackTrace();
-        } finally {
-            DBUtil.close(null, pst, con);
-        }
-        return result;
-    }
-
     @Override
     public Business login(Integer businessId, String password) {
         Business business = null;
@@ -194,13 +150,84 @@ public class BusinessDaoImpl  implements BusinessDao{
         return businessId;
     }
 
+    /**
+     * 更改商户密码
+     * @param businessId
+     * @param password
+     * @return
+     */
     @Override
-    public int updateBusinessByPassword(Integer businessId, String password) {
-        //1.获取连接
-        //2.准备SQL
-        //3.执行SQL
-        //4.处理结果
-        //5.释放资源
-        return 0;
+    public int updatePassword(int businessId, String password) {
+        int result = 0;//更行的行数
+        String sql = "update business set password = ? where businessId = ?";
+        try{
+            con = DBUtil.getConnection();
+            pst = con.prepareStatement(sql);
+            pst.setString(1,password);
+            pst.setInt(2,businessId);
+            result = pst.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DBUtil.close(rs,pst,con);
+        }
+        return result;
     }
+
+    /**
+     * 更新商户信息
+     * @param business
+     * @return
+     */
+    @Override
+    public int updateBusiness(Business business) {
+        int result = 0;//更行的行数
+        String sql = "update business set  businessName = ?,businessAddress=?,businessExplain=?,starPrice=?,deliveryPrice=? where businessId = ?";
+        try{
+            con = DBUtil.getConnection();
+            pst = con.prepareStatement(sql);
+            pst.setString(1,business.getBusinessName());
+            pst.setString(2,business.getBusinessAddress());
+            pst.setString(3,business.getBusinessExplain());
+            pst.setDouble(4,business.getStarPrice());
+            pst.setDouble(5,business.getDeliveryPrice());
+            pst.setInt(6,business.getBusinessId());
+            result = pst.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DBUtil.close(rs,pst,con);
+        }
+        return result;
+    }
+
+    @Override
+    public int deleteBusiness(int businessId) {
+        int result = 0;
+        String delFootSql = "delete from food where businessId = ?";
+        String delBusinessSql = "delete from business where businessId = ?";
+        try {
+            con = DBUtil.getConnection();
+            con.setAutoCommit(false); //开启一个事务
+            pst = con.prepareStatement(delFootSql);
+            pst.setInt(1, businessId);
+            pst.executeUpdate();
+            pst = con.prepareStatement(delBusinessSql);
+            pst.setInt(1, businessId);
+            result = pst.executeUpdate();
+            con.commit();
+        } catch (SQLException e) {
+            result = 0;
+            try {
+                con.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(null, pst, con);
+        }
+        return result;
+    }
+
 }

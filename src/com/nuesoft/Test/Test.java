@@ -1,4 +1,4 @@
-package com.nuesoft;
+package com.nuesoft.Test;
 
 public class Test {
 

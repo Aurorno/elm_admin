@@ -1,8 +1,10 @@
-package com.nuesoft;
+package com.nuesoft.Test;
 
 import com.nuesoft.dao.BusinessDao;
 import com.nuesoft.dao.impl.BusinessDaoImpl;
 import com.nuesoft.po.Business;
+
+import java.util.List;
 
 public class Test_Business {
 
@@ -11,11 +13,10 @@ public class Test_Business {
         BusinessDao businessDao = new BusinessDaoImpl();
 
         //测试查询商户列表信息
-        /*BusinessDao businessDao = new BusinessDaoImpl();
         List<Business> businessList = businessDao.listBusiness("米", "沈阳");
         for (Business b:businessList){
             System.out.println(b);
-        }*/
+        }
 
         //测试根据id查询指定商户信息
         /*Business business = businessDao.getBusinessById(10001);
